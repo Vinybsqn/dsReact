@@ -5,33 +5,47 @@ const Ajout = () => {
     const [titre, setTitre] = useState('');
     const [stock, setStock] = useState('');
     const [livres, setLivres] = useState(JSON.parse(localStorage.getItem('livres')) || []);
+    const [error, setError] = useState('');
 
     const handleAdd = () => {
-        const newLivres = [...livres, { titre, stock: parseInt(stock) }];
-        setLivres(newLivres);
-        localStorage.setItem('livres', JSON.stringify(newLivres));
-        setTitre('');
-        setStock('');
-    };
+        if (titre && stock) {
+            const newLivre = {
+                id: Date.now(),
+                titre,
+                stock
+            };
+
+            setLivres([...livres, newLivre]);
+            localStorage.setItem('livres', JSON.stringify([...livres, newLivre]));
+            setTitre('');
+            setStock('');
+            setError('');
+        } else {
+            setError('Veuillez remplir tous les champs');
+        }
+    }
 
     return (
-        <section className="ajout">
-            <div className="container">
-                <h1>Ajout de livre</h1>
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <div>
-                        <label htmlFor="titre">Titre</label>
-                        <input type="text" id="titre" value={titre} onChange={(e) => setTitre(e.target.value)} />
-                    </div>
-                    <div>
-                        <label htmlFor="stock">Stock</label>
-                        <input type="number" id="stock" value={stock} onChange={(e) => setStock(e.target.value)} />
-                    </div>
-                    <button onClick={handleAdd}>Ajouter</button>
-                </form>
+        <div className="ajout">
+            <h1>Ajout de livre</h1>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Titre"
+                    value={titre}
+                    onChange={(e) => setTitre(e.target.value)}
+                />
+                <input
+                    type="number"
+                    placeholder="Stock"
+                    value={stock}
+                    onChange={(e) => setStock(e.target.value)}
+                />
+                <button onClick={handleAdd}>Ajouter</button>
+                {error && <p>{error}</p>}
             </div>
-        </section>
-    );
+        </div>
+    )
 }
 
 export default Ajout;
