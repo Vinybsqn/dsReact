@@ -1,0 +1,51 @@
+.ajout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.ajout h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.ajout form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ajout form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.ajout form button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--primaryColor);
+  color: var(--titleColor);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ajout form button:hover {
+  background-color: var(--secondaryColor);
+}
+
+.ajout form button:active {
+  background-color: var(--primaryColor);
+}
